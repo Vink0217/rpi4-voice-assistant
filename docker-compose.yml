@@ -1,0 +1,22 @@
+services:
+  app:
+    image: sasquatch06/vink_project:latest
+    container_name: app
+    restart: unless-stopped
+    environment:
+      - GEMINI_API_KEY=<insert-api-key-here>
+    ports:
+      - "8501:8501"
+    devices:
+      - "/dev/snd:/dev/snd"  # Pass the audio devices from host
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  watchtower:
+    image: containrrr/watchtower:latest
+    container_name: watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 3600 --cleanup --stop-timeout 60s app
+
