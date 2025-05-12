@@ -1,4 +1,4 @@
-# rpi4-voice-assistant
+# Rpi4-voice-assistant
 > Streamlit based webapp for voice based interaction with Gemini 1.5 Flash model.
 
 ### Requirements
